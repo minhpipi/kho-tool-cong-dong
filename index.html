@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kho Tool Cộng Đồng</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body class="bg-[#070b14] text-slate-100 min-h-screen">
+  <header class="border-b border-slate-800 py-4 px-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-lg font-bold">KHO TOOL <span class="text-cyan-400">CỘNG ĐỒNG</span></h1>
+      <button id="backBtn" onclick="showHub()" class="hidden text-xs bg-slate-800 px-4 py-2 rounded-xl">← Về Hub</button>
+    </div>
+  </header>
+  <main class="max-w-7xl mx-auto px-4 py-8">
+    <div id="hub-view">
+      <div class="mb-6">
+        <input id="searchInput" type="text" placeholder="Tìm tool..." class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm">
+      </div>
+      <div id="toolsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </div>
+    <div id="tool-view" class="hidden">
+      <div id="tool-container"></div>
+    </div>
+  </main>
+  <script src="./core/shared.js"></script>
+  <script src="./core/loader.js"></script>
+  <script>
+    let tools = [];
+    async function init() {
+      try {
+        const res = await fetch('./manifest.json');
+        tools = await res.json();
+        renderTools(tools);
+      } catch (e) {
+        document.getElementById('toolsGrid').innerHTML = '<p class="text-rose-400">Không tải được danh sách tool.</p>';
+      }
+    }
+    function renderTools(list) {
+      const grid = document.getElementById('toolsGrid');
+      grid.innerHTML = list.map(t => `
+        <div onclick="openTool('${t.id}')" class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl cursor-pointer hover:border-cyan-500/50">
+          <div class="text-2xl mb-2">${t.icon || '🔧'}</div>
+          <h4 class="font-bold text-white">${t.name}</h4>
+          <p class="text-xs text-slate-400 mt-1">${t.description || ''}</p>
+        </div>
+      `).join('');
+    }
+    function openTool(id) {
+      const tool = tools.find(t => t.id === id);
+      if (!tool) return;
+      document.getElementById('hub-view').classList.add('hidden');
+      document.getElementById('tool-view').classList.remove('hidden');
+      document.getElementById('backBtn').classList.remove('hidden');
+      KhoTool.loader.load(tool);
+    }
+    function showHub() {
+      document.getElementById('hub-view').classList.remove('hidden');
+      document.getElementById('tool-view').classList.add('hidden');
+      document.getElementById('backBtn').classList.add('hidden');
+    }
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      renderTools(tools.filter(t => t.name.toLowerCase().includes(q) || (t.description || '').toLowerCase().includes(q)));
+    });
+    init();
+  </script>
+</body>
+</html>
