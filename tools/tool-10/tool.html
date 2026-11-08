@@ -1,0 +1,31 @@
+<div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4">
+  <div class="flex items-center justify-between">
+    <h2 class="text-xl font-bold text-white">AI Data Cleaner</h2>
+    <span class="text-[10px] bg-cyan-500/10 text-cyan-400 px-2 py-1 rounded-lg">v3</span>
+  </div>
+  <p class="text-xs text-slate-400">Chuẩn hóa dữ liệu trước khi đưa vào AI.</p>
+  <textarea id="x1-input" rows="8" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 font-mono" placeholder="Dán dữ liệu..."></textarea>
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+    <label class="flex items-center gap-2 cursor-pointer bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+      <input type="checkbox" id="x1-dedupe" checked class="accent-cyan-500"> Xóa trùng
+    </label>
+    <label class="flex items-center gap-2 cursor-pointer bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+      <input type="checkbox" id="x1-phone" class="accent-cyan-500"> Chuẩn hóa SĐT
+    </label>
+    <label class="flex items-center gap-2 cursor-pointer bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+      <input type="checkbox" id="x1-mask" class="accent-cyan-500"> Che thông tin nhạy cảm
+    </label>
+    <label class="flex items-center gap-2 cursor-pointer bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+      <input type="checkbox" id="x1-prompt" checked class="accent-cyan-500"> Tạo prompt sẵn
+    </label>
+  </div>
+  <button id="x1-cleanBtn" class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl">Chuẩn hóa</button>
+  <div id="x1-result" class="hidden space-y-3">
+    <textarea id="x1-output" rows="6" readonly class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 font-mono"></textarea>
+    <div id="x1-stats" class="text-xs text-slate-500 bg-slate-950/60 p-3 rounded-lg"></div>
+    <div id="x1-promptBox" class="hidden space-y-2">
+      <textarea id="x1-promptText" rows="3" readonly class="w-full bg-slate-950 border border-cyan-800/50 rounded-xl p-3 text-xs text-cyan-300"></textarea>
+      <button id="x1-copyPromptBtn" class="text-xs bg-cyan-600 hover:bg-cyan-500 text-white px-3 py-1.5 rounded-lg">Sao chép prompt</button>
+    </div>
+  </div>
+</div>
