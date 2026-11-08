@@ -1,0 +1,82 @@
+<style>
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+<div class="space-y-6">
+  <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 space-y-4">
+    <div class="flex items-center justify-between">
+      <h2 class="text-xl font-bold text-white">Executive Dashboard</h2>
+      <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-lg">v11</span>
+    </div>
+    <p class="text-xs text-slate-400">Tạo báo cáo từ file Excel.</p>
+    <div id="m6-uploadSection" class="space-y-3">
+      <label class="block text-xs text-slate-300">Upload file Excel/CSV</label>
+      <input type="file" id="m6-excelInput" accept=".xlsx,.xls,.csv" class="text-xs text-slate-300">
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+      <div>
+        <label class="text-xs text-slate-300">Cột phân loại</label>
+        <select id="m6-catColSelect" class="w-full mt-1 p-2 text-xs bg-slate-900 border border-slate-700 rounded-lg text-slate-200"></select>
+      </div>
+      <div>
+        <label class="text-xs text-slate-300">Cột giá trị</label>
+        <select id="m6-valColSelect" class="w-full mt-1 p-2 text-xs bg-slate-900 border border-slate-700 rounded-lg text-slate-200"></select>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+      <div>
+        <label class="text-xs text-slate-300">Tên công ty</label>
+        <input type="text" id="m6-companyName" placeholder="Công ty ABC" class="w-full mt-1 p-2 text-xs bg-slate-900 border border-slate-700 rounded-lg text-slate-200">
+      </div>
+      <div>
+        <label class="text-xs text-slate-300">Logo</label>
+        <input type="file" id="m6-logoInput" accept="image/*" class="w-full mt-1 text-xs text-slate-300">
+      </div>
+    </div>
+    <button id="m6-buildBtn" class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold text-xs px-5 py-2.5 rounded-xl">Tạo báo cáo</button>
+  </div>
+  <div id="m6-dashboardSection" class="hidden space-y-4">
+    <div id="m6-insightBox" class="bg-slate-950/60 border border-slate-800 rounded-xl p-4">
+      <div class="text-[10px] text-slate-400 uppercase font-bold mb-2">Nhận xét tự động</div>
+      <div id="m6-insightText" class="text-xs text-slate-300"></div>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+        <div class="text-[10px] text-slate-400">Tổng</div>
+        <div id="m6-kpiTotal" class="text-xl font-black text-white">0</div>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+        <div class="text-[10px] text-slate-400">Trung bình</div>
+        <div id="m6-kpiAvg" class="text-xl font-black text-emerald-400">0</div>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+        <div class="text-[10px] text-slate-400">Số dòng</div>
+        <div id="m6-kpiCount" class="text-xl font-black text-white">0</div>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+        <div class="text-[10px] text-slate-400">Dẫn đầu</div>
+        <div id="m6-kpiTop" class="text-xl font-black text-amber-400">-</div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+        <canvas id="m6-barChart" height="200"></canvas>
+      </div>
+      <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4">
+        <canvas id="m6-doughnutChart" height="200"></canvas>
+      </div>
+    </div>
+    <div class="bg-slate-900/60 border border-slate-800 rounded-xl overflow-hidden">
+      <table class="w-full text-xs">
+        <thead class="bg-slate-950/60">
+          <tr>
+            <th class="px-4 py-2 text-left text-slate-400">Nhóm</th>
+            <th class="px-4 py-2 text-right text-slate-400">Giá trị</th>
+            <th class="px-4 py-2 text-right text-slate-400">Tỷ lệ</th>
+          </tr>
+        </thead>
+        <tbody id="m6-detailTable"></tbody>
+      </table>
+    </div>
+    <button id="m6-printBtn" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl">Xuất PDF</button>
+  </div>
+</div>
