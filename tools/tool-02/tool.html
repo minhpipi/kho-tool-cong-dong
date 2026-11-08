@@ -1,0 +1,17 @@
+<div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-4">
+  <div class="flex items-center justify-between">
+    <h2 class="text-xl font-bold text-white">QuickVietQR Generator</h2>
+    <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-lg">v2</span>
+  </div>
+  <p class="text-xs text-slate-400">Tạo mã VietQR thanh toán.</p>
+  <div class="grid grid-cols-2 gap-3">
+    <input id="m2-bank" placeholder="Ngân hàng" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200">
+    <input id="m2-account" placeholder="Số tài khoản" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200">
+  </div>
+  <input id="m2-amount" placeholder="Số tiền" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200">
+  <input id="m2-content" placeholder="Nội dung" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200">
+  <button id="m2-genBtn" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl">Tạo QR</button>
+  <div id="m2-result" class="hidden text-center">
+    <img id="m2-qr" class="mx-auto max-w-xs">
+  </div>
+</div>
