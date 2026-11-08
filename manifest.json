@@ -1,0 +1,22 @@
+[
+  {
+    "id": "tool-01",
+    "name": "Smart Data Cleaner",
+    "description": "Lọc sạch số điện thoại từ văn bản thô, xóa trùng lặp.",
+    "icon": "🧹",
+    "color": "cyan",
+    "tags": ["data", "sđt", "sales", "lọc"],
+    "status": "live",
+    "path": "./tools/tool-01/"
+  },
+  {
+    "id": "tool-10",
+    "name": "AI Data Cleaner",
+    "description": "Làm sạch dữ liệu trước khi đưa vào ChatGPT hoặc AI khác.",
+    "icon": "🧹",
+    "color": "cyan",
+    "tags": ["ai", "làm sạch", "dữ liệu", "chatgpt"],
+    "status": "live",
+    "path": "./tools/tool-10/"
+  }
+]
